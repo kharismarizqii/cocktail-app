@@ -13,4 +13,35 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Theme.Cocktail.Text"/>
+    <style name="Theme.Cocktail.Text.H3">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="Theme.Cocktail.Image">
+    </style>
+
+    <style name="Theme.Cocktail.Image.List">
+    </style>
+
+    <style name="Theme.Cocktail.Image.List.Rounded">
+        <item name="cornerSize">10%</item>
+    </style>
+
+    <style name="Theme.Cocktail.Container">
+        <item name="background">@color/white</item>
+    </style>
+
+    <style name="Theme.Cocktail.Container.Card">
+        <item name="cardElevation">8dp</item>
+        <item name="contentPadding">8dp</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:layout_margin">16dp</item>
+    </style>
+
+    <style name="Theme.Cocktail.Container.Card.Small">
+        <item name="contentPadding">8dp</item>
+    </style>
 </resources>
