@@ -16,7 +16,7 @@ class FakeCocktailRepository: CocktailRepository {
     }
 
     override suspend fun searchCocktail(q: String): Either<Throwable, List<Cocktail>> {
-        TODO("Not yet implemented")
+        return Either.Success(FakeData.listCocktailDomain, 200, "OK")
     }
 
     override suspend fun filterCocktail(queries: Map<String, String>): Either<Throwable, List<Cocktail>> {

@@ -22,7 +22,7 @@ class RemoteDataSourceTest{
     fun setUp(){
         api = mockk()
         coEvery { api.getListCocktail() } returns Response.success(FakeData.listCocktailResponse)
-
+        coEvery { api.searchCocktail(any()) } returns Response.success(FakeData.listCocktailResponse)
         remoteDataSource = RemoteDataSource(api)
     }
 
@@ -30,6 +30,14 @@ class RemoteDataSourceTest{
     fun `Should return list cocktail response when getListCocktail() is called`(){
         runBlocking {
             val result = remoteDataSource.getListCocktail()
+            assertEquals(Either.Success(FakeData.listCocktailResponse, 200, "OK"), result)
+        }
+    }
+
+    @Test
+    fun `Should return list cocktail response when searchCocktail() is called`(){
+        runBlocking {
+            val result = remoteDataSource.searchCocktail("martini")
             assertEquals(Either.Success(FakeData.listCocktailResponse, 200, "OK"), result)
         }
     }

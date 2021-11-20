@@ -28,4 +28,12 @@ class CocktailInteractorTest{
             assertEquals(Either.Success(FakeData.listCocktailDomain, 200, "OK"), result)
         }
     }
+
+    @Test
+    fun `Should return list cocktail when searchCocktail is called`(){
+        runBlocking {
+            val result = repository.searchCocktail("martini")
+            assertEquals(Either.Success(FakeData.listCocktailDomain, 200, "OK"), result)
+        }
+    }
 }

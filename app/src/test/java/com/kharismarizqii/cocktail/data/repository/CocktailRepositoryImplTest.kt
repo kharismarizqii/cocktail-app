@@ -27,14 +27,23 @@ class CocktailRepositoryImplTest{
         remoteDataSource = mockk()
         listCocktailMapper = mockk()
         every { listCocktailMapper.mapToDomain(any()) } returns FakeData.listCocktailDomain
+        repository = CocktailRepositoryImpl(remoteDataSource, listCocktailMapper)
     }
 
     @Test
     fun `Should return list cocktail when getListCocktail() is called`(){
         coEvery { remoteDataSource.getListCocktail() } returns Either.Success(FakeData.listCocktailResponse, 200, "OK")
-        repository = CocktailRepositoryImpl(remoteDataSource, listCocktailMapper)
         runBlocking {
             val result = repository.getListCokctail()
+            assertEquals(Either.Success(FakeData.listCocktailDomain, 200, "OK"), result)
+        }
+    }
+
+    @Test
+    fun `Should return list cocktail when searchCocktail() is called`(){
+        coEvery { remoteDataSource.searchCocktail(any()) } returns Either.Success(FakeData.listCocktailResponse, 200, "OK")
+        runBlocking {
+            val result = repository.searchCocktail("martini")
             assertEquals(Either.Success(FakeData.listCocktailDomain, 200, "OK"), result)
         }
     }
