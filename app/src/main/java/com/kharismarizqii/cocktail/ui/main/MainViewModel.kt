@@ -22,11 +22,34 @@ class MainViewModel @Inject constructor(
     sealed class MainUiState {
         data class Success(val listCocktail: List<Cocktail>): MainUiState()
         data class Failed(val message: String): MainUiState()
+        object Loading: MainUiState()
     }
 
     fun getListCocktail() {
+        _uiState.value = MainUiState.Loading
         viewModelScope.launch(dispatcher.io) {
             val response = cocktailUseCase.getListCocktail()
+            when(response){
+                is Either.Success -> {
+                    withContext(dispatcher.main){
+                        d{"Success: ${response.message}"}
+                        _uiState.value = MainUiState.Success(response.body)
+                    }
+                }
+                is Either.Failed -> {
+                    withContext(dispatcher.main){
+                        d{"Failed: ${response.failure.message}"}
+                        _uiState.value = MainUiState.Failed(response.failure.message.toString())
+                    }
+                }
+            }
+        }
+    }
+
+    fun searchCocktail(q: String){
+        _uiState.value = MainUiState.Loading
+        viewModelScope.launch(dispatcher.io) {
+            val response = cocktailUseCase.searchCocktail(q)
             when(response){
                 is Either.Success -> {
                     withContext(dispatcher.main){

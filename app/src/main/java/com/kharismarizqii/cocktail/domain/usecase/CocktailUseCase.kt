@@ -9,4 +9,5 @@ import com.kharismarizqii.core_cocktail.vo.Either
  */
 interface CocktailUseCase {
     suspend fun getListCocktail(): Either<Throwable, List<Cocktail>>
+    suspend fun searchCocktail(q: String): Either<Throwable, List<Cocktail>>
 }

@@ -14,4 +14,8 @@ class CocktailInteractor(
     override suspend fun getListCocktail(): Either<Throwable, List<Cocktail>> {
         return repository.getListCokctail()
     }
+
+    override suspend fun searchCocktail(q: String): Either<Throwable, List<Cocktail>> {
+        return repository.searchCocktail(q)
+    }
 }
