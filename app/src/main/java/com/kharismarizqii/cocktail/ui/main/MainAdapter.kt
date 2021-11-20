@@ -14,13 +14,13 @@ import com.kharismarizqii.core_cocktail.abstraction.BaseViewHolder
  */
 class MainAdapter : BaseRecyclerViewAdapter<MainAdapter.MainViewHolder>() {
 
-    private var listData = listOf<Cocktail>(
-        Cocktail(
-            "afdasf",
-            "Cocktail1",
-            "https://avatars.githubusercontent.com/u/46817854?v=4"
-        ), Cocktail("afdasf", "Cocktail1", "https://avatars.githubusercontent.com/u/46817854?v=4")
-    )
+    private val listData: MutableList<Cocktail> = ArrayList()
+
+    fun submitList(newList:List<Cocktail>){
+        listData.clear()
+        listData.addAll(newList)
+        notifyDataSetChanged()
+    }
 
     class MainViewHolder(itemView: ItemCocktailBinding) :
         BaseViewHolder<Cocktail, ItemCocktailBinding>(itemView) {
