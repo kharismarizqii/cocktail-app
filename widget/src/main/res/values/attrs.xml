@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomSearchBar">
+        <attr name="android:queryHint" format="string"/>
+        <attr name="queryHint" format="string"/>
+        <attr name="defaultQueryHint" format="string"/>
+        <attr name="additionalButtonSrc" format="reference"/>
+        <attr name="useAdditionalButton" format="boolean"/>
+    </declare-styleable>
+</resources>

@@ -29,7 +29,15 @@ class CocktailRepositoryImpl @Inject constructor(
     }
 
     override suspend fun searchCocktail(q: String): Either<Throwable, List<Cocktail>> {
-        TODO("Not yet implemented")
+        val response = remoteDataSource.searchCocktail(q)
+        return when(response){
+            is Either.Success -> {
+                Either.Success(listCocktailMapper.mapToDomain(response.body), response.code, response.message)
+            }
+            is Either.Failed -> {
+                Either.Failed(response.failure)
+            }
+        }
     }
 
     override suspend fun filterCocktail(queries: Map<String, String>): Either<Throwable, List<Cocktail>> {

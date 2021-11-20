@@ -3,9 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../layout/custom_preview.xml" value="0.20572916666666666" />
+        <entry key="app/src/main/res/drawable/bg_white_rounded.xml" value="0.15572916666666667" />
         <entry key="app/src/main/res/drawable/gradient.xml" value="0.759375" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_cocktail.xml" value="0.33" />
+        <entry key="widget/src/main/res/layout/searchview_custom.xml" value="0.1408514492753623" />
       </map>
     </option>
   </component>
