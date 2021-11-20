@@ -7,4 +7,9 @@
         <attr name="additionalButtonSrc" format="reference"/>
         <attr name="useAdditionalButton" format="boolean"/>
     </declare-styleable>
+
+    <declare-styleable name="FilterButton">
+        <attr name="textFilter" format="string"/>
+        <attr name="backgroundFilter" format="reference"/>
+    </declare-styleable>
 </resources>
