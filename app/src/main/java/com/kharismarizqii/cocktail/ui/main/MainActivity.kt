@@ -3,6 +3,7 @@ package com.kharismarizqii.cocktail.ui.main
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kharismarizqii.cocktail.MyApplication
 import com.kharismarizqii.cocktail.databinding.ActivityMainBinding
@@ -31,7 +32,7 @@ class MainActivity : BaseActivityBinding<ActivityMainBinding>(), Observer<MainVi
     private fun setupCocktailList() {
         with(binding){
             rvCocktail.setHasFixedSize(true)
-            rvCocktail.layoutManager = LinearLayoutManager(this@MainActivity)
+            rvCocktail.layoutManager = GridLayoutManager(this@MainActivity, 2)
             rvCocktail.adapter = adapter
         }
     }
