@@ -4,7 +4,6 @@ import com.kharismarizqii.cocktail.data.remote.response.CocktailResponse
 import com.kharismarizqii.cocktail.data.remote.service.ApiService
 import com.kharismarizqii.core_cocktail.vo.Either
 import retrofit2.Response
-import retrofit2.http.QueryMap
 import javax.inject.Inject
 
 /**

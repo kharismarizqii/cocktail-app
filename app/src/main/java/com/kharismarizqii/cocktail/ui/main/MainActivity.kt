@@ -7,6 +7,8 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.kharismarizqii.cocktail.MyApplication
 import com.kharismarizqii.cocktail.databinding.ActivityMainBinding
+import com.kharismarizqii.cocktail.domain.model.CocktailFilter
+import com.kharismarizqii.cocktail.ui.dialog.FilterDialogFragment
 import com.kharismarizqii.core_cocktail.abstraction.BaseActivityBinding
 import javax.inject.Inject
 
@@ -28,7 +30,18 @@ class MainActivity : BaseActivityBinding<ActivityMainBinding>(),
         viewModel.uiState.observe(this, this)
         setupCocktailList()
         setupSearchAction()
+        setupFilterAction()
         viewModel.getListCocktail()
+    }
+
+    private fun setupFilterAction() {
+        with(binding){
+            svCocktail.setOnAdditionalButtonListener {
+                FilterDialogFragment.build(CocktailFilter()){
+
+                }.show(supportFragmentManager, this@MainActivity.javaClass.name)
+            }
+        }
     }
 
     private fun setupSearchAction() {

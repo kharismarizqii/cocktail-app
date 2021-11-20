@@ -7,7 +7,14 @@
         <entry key="app/src/main/res/drawable/bg_white_rounded.xml" value="0.15572916666666667" />
         <entry key="app/src/main/res/drawable/gradient.xml" value="0.759375" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/bottom_filter_list.xml" value="0.21" />
+        <entry key="app/src/main/res/layout/dialog_filter.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_cocktail.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/item_filter_bottom_dialog.xml" value="0.33" />
+        <entry key="widget/src/main/res/drawable/bg_filter_dropdown.xml" value="0.1765625" />
+        <entry key="widget/src/main/res/drawable/bg_filter_dropdown_on.xml" value="0.1765625" />
+        <entry key="widget/src/main/res/drawable/ic_chevron_right.xml" value="0.1765625" />
+        <entry key="widget/src/main/res/layout/button_filter.xml" value="0.13541666666666666" />
         <entry key="widget/src/main/res/layout/searchview_custom.xml" value="0.1408514492753623" />
       </map>
     </option>

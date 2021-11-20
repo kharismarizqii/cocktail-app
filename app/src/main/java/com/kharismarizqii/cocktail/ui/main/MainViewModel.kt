@@ -3,6 +3,7 @@ package com.kharismarizqii.cocktail.ui.main
 import androidx.lifecycle.viewModelScope
 import com.github.ajalt.timberkt.d
 import com.kharismarizqii.cocktail.domain.model.Cocktail
+import com.kharismarizqii.cocktail.domain.model.CocktailFilter
 import com.kharismarizqii.cocktail.domain.usecase.CocktailUseCase
 import com.kharismarizqii.core_cocktail.abstraction.BaseViewModel
 import com.kharismarizqii.core_cocktail.dispatcher.DispatcherProvider
@@ -50,6 +51,27 @@ class MainViewModel @Inject constructor(
         _uiState.value = MainUiState.Loading
         viewModelScope.launch(dispatcher.io) {
             val response = cocktailUseCase.searchCocktail(q)
+            when(response){
+                is Either.Success -> {
+                    withContext(dispatcher.main){
+                        d{"Success: ${response.message}"}
+                        _uiState.value = MainUiState.Success(response.body)
+                    }
+                }
+                is Either.Failed -> {
+                    withContext(dispatcher.main){
+                        d{"Failed: ${response.failure.message}"}
+                        _uiState.value = MainUiState.Failed(response.failure.message.toString())
+                    }
+                }
+            }
+        }
+    }
+
+    fun filterCocktail(filter: CocktailFilter){
+        _uiState.value = MainUiState.Loading
+        viewModelScope.launch(dispatcher.io) {
+            val response = cocktailUseCase.filterCocktail(filter)
             when(response){
                 is Either.Success -> {
                     withContext(dispatcher.main){
