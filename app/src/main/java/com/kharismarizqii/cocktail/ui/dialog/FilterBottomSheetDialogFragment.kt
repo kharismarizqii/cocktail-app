@@ -5,7 +5,9 @@ import android.view.ViewGroup
 import com.kharismarizqii.cocktail.R
 import com.kharismarizqii.cocktail.databinding.BottomFilterListBinding
 import com.kharismarizqii.cocktail.domain.model.FilterQuery
+import com.kharismarizqii.cocktail.utils.extensions.dp
 import com.kharismarizqii.core_cocktail.abstraction.BaseBottomDialogBinding
+import com.kharismarizqii.widget.recyclerview.MarginItemDecoration
 
 /**
  * Created by Kharisma Rizqi on 20/11/21
@@ -26,6 +28,7 @@ class FilterBottomSheetDialogFragment : BaseBottomDialogBinding<BottomFilterList
     override fun setupView() {
         binding.tvTitleFilter.text = title
         binding.recyclerBottomSheet.adapter = adapter
+        binding.recyclerBottomSheet.addItemDecoration(MarginItemDecoration(spaceSize = 32.dp,leftMargin = 24.dp,rightMargin = 24.dp,bottomMargin = 16.dp))
     }
 
     override fun getTheme(): Int {
