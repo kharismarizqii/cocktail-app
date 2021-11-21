@@ -13,3 +13,19 @@ fun View.setMarginTop(marginTop: Int) {
     menuLayoutParams.setMargins(0, marginTop, 0, 0)
     this.layoutParams = menuLayoutParams
 }
+
+fun enable(view: View) {
+    with(view) {
+        isFocusable = true
+        isClickable = true
+        isEnabled = true
+    }
+}
+
+fun disable(view: View) {
+    with(view) {
+        isFocusable = false
+        isClickable = false
+        isEnabled = false
+    }
+}

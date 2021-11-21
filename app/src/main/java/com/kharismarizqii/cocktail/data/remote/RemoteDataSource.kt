@@ -14,6 +14,7 @@ class RemoteDataSource @Inject constructor(private val api: ApiService) {
     suspend fun getListCocktail(): Either<Throwable, CocktailResponse> = request {
         api.getListCocktail()
     }
+
     suspend fun searchCocktail(q: String): Either<Throwable, CocktailResponse> = request {
         api.searchCocktail(q)
     }
@@ -26,6 +27,17 @@ class RemoteDataSource @Inject constructor(private val api: ApiService) {
         api.getDetailCocktail(id)
     }
 
+    suspend fun getFilterAlcoholic() = request {
+        api.getFilterAlcoholic()
+    }
+
+    suspend fun getFilterGlass() = request {
+        api.getFilterGlass()
+    }
+
+    suspend fun getFilterCategory() = request {
+        api.getFilterCategory()
+    }
 
 
     suspend fun <T> request(apiCall: suspend () -> Response<T>): Either<Throwable, T> {

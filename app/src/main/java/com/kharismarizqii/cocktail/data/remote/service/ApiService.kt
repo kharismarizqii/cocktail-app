@@ -1,7 +1,6 @@
 package com.kharismarizqii.cocktail.data.remote.service
 
-import com.kharismarizqii.cocktail.data.remote.response.CocktailResponse
-import com.kharismarizqii.cocktail.data.remote.response.DetailCocktailResponse
+import com.kharismarizqii.cocktail.data.remote.response.*
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -23,4 +22,15 @@ interface ApiService {
 
     @GET("lookup.php")
     suspend fun getDetailCocktail(@Query("i") id: String): Response<DetailCocktailResponse>
+
+    @GET("list.php?c=list")
+    suspend fun getFilterCategory(): Response<FilterCategoryResponse>
+
+    @GET("list.php?g=list")
+    suspend fun getFilterGlass(): Response<FilterGlassResponse>
+
+    @GET("list.php?a=list")
+    suspend fun getFilterAlcoholic(): Response<FilterAlcoholicResponse>
+
+
 }

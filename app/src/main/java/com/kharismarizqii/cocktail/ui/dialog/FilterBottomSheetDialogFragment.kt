@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.kharismarizqii.cocktail.R
 import com.kharismarizqii.cocktail.databinding.BottomFilterListBinding
-import com.kharismarizqii.cocktail.domain.model.FilterData
+import com.kharismarizqii.cocktail.domain.model.FilterQuery
 import com.kharismarizqii.core_cocktail.abstraction.BaseBottomDialogBinding
 
 /**
@@ -33,7 +33,7 @@ class FilterBottomSheetDialogFragment : BaseBottomDialogBinding<BottomFilterList
     }
 
     fun setOnClickItemListener(
-        listData: List<FilterData>,
+        listData: List<FilterQuery>,
         titleDialog: String,
         onClick: (String, Int) -> Unit
     ) {
@@ -43,9 +43,9 @@ class FilterBottomSheetDialogFragment : BaseBottomDialogBinding<BottomFilterList
         this.onClick = onClick
     }
 
-    private fun setItemsFilter(listData: List<FilterData>) {
+    private fun setItemsFilter(listData: List<FilterQuery>) {
         val listFilter: MutableList<String> = mutableListOf()
-        listData.forEach { listFilter.add(it.filterName) }
+        listData.forEach { listFilter.add(it.query) }
         adapter.submitList(listFilter)
     }
 

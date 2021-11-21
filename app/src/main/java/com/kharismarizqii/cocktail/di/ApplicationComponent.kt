@@ -1,5 +1,6 @@
 package com.kharismarizqii.cocktail.di
 
+import com.kharismarizqii.cocktail.ui.dialog.FilterDialogFragment
 import com.kharismarizqii.cocktail.ui.main.MainActivity
 import dagger.Component
 import javax.inject.Singleton
@@ -15,4 +16,5 @@ import javax.inject.Singleton
 )
 interface ApplicationComponent {
     fun inject(activity: MainActivity)
+    fun inject(fragment: FilterDialogFragment)
 }
