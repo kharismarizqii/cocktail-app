@@ -10,21 +10,20 @@
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="Theme.Cocktail.Text"/>
+    <style name="Theme.Cocktail.Text" />
+
     <style name="Theme.Cocktail.Text.CardTitle">
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name="Theme.Cocktail.Image">
-    </style>
+    <style name="Theme.Cocktail.Image" />
 
-    <style name="Theme.Cocktail.Image.List">
-    </style>
+    <style name="Theme.Cocktail.Image.List" />
 
     <style name="Theme.Cocktail.Image.List.Rounded">
         <item name="cornerSize">10%</item>
