@@ -22,7 +22,8 @@ import javax.inject.Inject
  */
 class FilterDialogFragment(
     private val filter: CocktailFilter,
-    private val onFilter: (filter: CocktailFilter) -> Unit
+    private val query: String,
+    private val onFilter: (filter: CocktailFilter, query: String) -> Unit
 ) : BaseFragmentDialogBinding<DialogFilterBinding>(), Observer<FilterViewModel.FilterUiState> {
 
     @Inject
@@ -49,7 +50,7 @@ class FilterDialogFragment(
         with(binding){
             btnClose.setOnClickListener { dismiss() }
             btnApplyFilter.setOnClickListener {
-                onFilter.invoke(filter)
+                onFilter.invoke(filter, query)
                 dismiss()
             }
         }
@@ -126,8 +127,9 @@ class FilterDialogFragment(
     companion object {
         fun build(
             filter: CocktailFilter,
-            onFilter: (filter: CocktailFilter) -> Unit
-        ) = FilterDialogFragment(filter, onFilter)
+            query: String,
+            onFilter: (filter: CocktailFilter, query: String) -> Unit
+        ) = FilterDialogFragment(filter, query, onFilter)
     }
 
     override fun onChanged(t: FilterViewModel.FilterUiState?) {

@@ -8,14 +8,16 @@ import com.kharismarizqii.core_cocktail.abstraction.BaseResponseMapper
  * Created by Kharisma Rizqi on 20/11/21
  * github.com/kharismarizqii
  */
-class CocktailMapper: BaseResponseMapper<CocktailResponse, List<Cocktail>> {
+class CocktailMapper : BaseResponseMapper<CocktailResponse, List<Cocktail>> {
     override fun mapToDomain(raw: CocktailResponse): List<Cocktail> {
-        return raw.drinks.map {
+        return if (raw.drinks != null) raw.drinks!!.map {
             Cocktail(
                 idDrink = it.idDrink,
                 strDrink = it.strDrink,
                 strDrinkThumb = it.strDrinkThumb
             )
+        } else {
+            listOf()
         }
     }
 }

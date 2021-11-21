@@ -10,6 +10,7 @@ import com.kharismarizqii.core_cocktail.dispatcher.DispatcherProvider
 import com.kharismarizqii.core_cocktail.vo.Either
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.*
 import javax.inject.Inject
 
 /**
@@ -77,6 +78,30 @@ class MainViewModel @Inject constructor(
                     withContext(dispatcher.main){
                         d{"Success: ${response.message}"}
                         _uiState.value = MainUiState.Success(response.body)
+                    }
+                }
+                is Either.Failed -> {
+                    withContext(dispatcher.main){
+                        d{"Failed: ${response.failure.message}"}
+                        _uiState.value = MainUiState.Failed(response.failure.message.toString())
+                    }
+                }
+            }
+        }
+    }
+
+    fun filterWithSearch(filter: CocktailFilter, query: String){
+        _uiState.value = MainUiState.Loading
+        viewModelScope.launch(dispatcher.io) {
+            val response = cocktailUseCase.filterCocktail(filter)
+            when(response){
+                is Either.Success -> {
+                    withContext(dispatcher.main){
+                        d{"Success: ${response.message}"}
+                        val list = response.body.filter {
+                            it.strDrink.lowercase().contains(query)
+                        }
+                        _uiState.value = MainUiState.Success(list)
                     }
                 }
                 is Either.Failed -> {

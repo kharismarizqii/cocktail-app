@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class CocktailResponse(
     @SerializedName("drinks")
-    var drinks: List<Drink> = listOf()
+    var drinks: List<Drink>? = listOf()
 ) {
     data class Drink(
         @SerializedName("idDrink")

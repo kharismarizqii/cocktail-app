@@ -1,7 +1,5 @@
 package com.kharismarizqii.cocktail.ui.main
 
-import android.content.res.Resources
-import android.os.Build
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
@@ -9,8 +7,8 @@ import androidx.core.view.*
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.kharismarizqii.cocktail.MyApplication
-import com.kharismarizqii.cocktail.R
 import com.kharismarizqii.cocktail.databinding.ActivityMainBinding
+import com.kharismarizqii.cocktail.domain.model.Cocktail
 import com.kharismarizqii.cocktail.domain.model.CocktailFilter
 import com.kharismarizqii.cocktail.ui.dialog.FilterDialogFragment
 import com.kharismarizqii.cocktail.utils.extensions.setMarginTop
@@ -28,13 +26,16 @@ class MainActivity : BaseActivityBinding<ActivityMainBinding>(),
     }
 
     private var filter = CocktailFilter()
+    private var query: String = ""
+    private val list: ArrayList<Cocktail> = ArrayList()
 
     override val bindingInflater: (LayoutInflater) -> ActivityMainBinding
         get() = { ActivityMainBinding.inflate(it) }
 
+
     override fun setupView() {
-        (application as MyApplication).appComponent.inject(this)
         setupTransparentStatusBar()
+        (application as MyApplication).appComponent.inject(this)
         viewModel.uiState.observe(this, this)
         setupCocktailList()
         setupSearchAction()
@@ -44,13 +45,11 @@ class MainActivity : BaseActivityBinding<ActivityMainBinding>(),
 
     private fun setupTransparentStatusBar() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
-        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, windowInsets ->
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, windowInsets ->
             val insets = windowInsets.getInsets(WindowInsetsCompat.Type.statusBars())
 
-            val currentSvMargin = binding.svCocktail.marginTop
-            val currentRvPadding = binding.rvCocktail.paddingTop
-            binding.svCocktail.setMarginTop(insets.top/2 + currentSvMargin)
-            binding.rvCocktail.updatePadding(top = insets.top/2 + currentRvPadding)
+            binding.svCocktail.setMarginTop(insets.top + 63)
+            binding.rvCocktail.updatePadding(top = insets.top + 226)
 
             WindowInsetsCompat.CONSUMED
         }
@@ -60,9 +59,14 @@ class MainActivity : BaseActivityBinding<ActivityMainBinding>(),
     private fun setupFilterAction() {
         with(binding) {
             svCocktail.setOnAdditionalButtonListener {
-                FilterDialogFragment.build(filter) {
-                    filter = it
-                    viewModel.filterCocktail(it)
+                FilterDialogFragment.build(filter, svCocktail.getQuery()) { pFilter, pQuery ->
+                    filter = pFilter
+                    query = pQuery
+                    if(pQuery.isEmpty()) {
+                        viewModel.filterCocktail(filter)
+                    } else {
+                        viewModel.filterWithSearch(filter, pQuery)
+                    }
                 }.show(supportFragmentManager, this@MainActivity.javaClass.name)
             }
         }
@@ -73,7 +77,14 @@ class MainActivity : BaseActivityBinding<ActivityMainBinding>(),
             svCocktail.setOnQueryChangeListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     if (query != null) {
-                        viewModel.searchCocktail(query.toString())
+                        if(filter.alcoholic==null && filter.category==null && filter.glass==null){
+                            viewModel.searchCocktail(query.toString())
+                        } else {
+                            val filteredList = list.filter {
+                                it.strDrink.lowercase().contains(query.toString().lowercase())
+                            }
+                            adapter.submitList(filteredList)
+                        }
                     }
                     return true
                 }
@@ -96,6 +107,8 @@ class MainActivity : BaseActivityBinding<ActivityMainBinding>(),
     override fun onChanged(t: MainViewModel.MainUiState?) {
         when (t) {
             is MainViewModel.MainUiState.Success -> {
+                list.clear()
+                list.addAll(t.listCocktail)
                 adapter.submitList(t.listCocktail)
             }
             is MainViewModel.MainUiState.Failed -> {
