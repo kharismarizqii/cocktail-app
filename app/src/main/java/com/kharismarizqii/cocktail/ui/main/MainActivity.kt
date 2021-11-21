@@ -27,6 +27,8 @@ class MainActivity : BaseActivityBinding<ActivityMainBinding>(),
         MainAdapter()
     }
 
+    private var filter = CocktailFilter()
+
     override val bindingInflater: (LayoutInflater) -> ActivityMainBinding
         get() = { ActivityMainBinding.inflate(it) }
 
@@ -58,8 +60,9 @@ class MainActivity : BaseActivityBinding<ActivityMainBinding>(),
     private fun setupFilterAction() {
         with(binding) {
             svCocktail.setOnAdditionalButtonListener {
-                FilterDialogFragment.build(CocktailFilter()) {
-
+                FilterDialogFragment.build(filter) {
+                    filter = it
+                    viewModel.filterCocktail(it)
                 }.show(supportFragmentManager, this@MainActivity.javaClass.name)
             }
         }

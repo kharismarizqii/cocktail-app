@@ -11,6 +11,8 @@ import com.kharismarizqii.cocktail.domain.model.CocktailFilter
 import com.kharismarizqii.cocktail.domain.model.FilterQuery
 import com.kharismarizqii.cocktail.utils.extensions.disable
 import com.kharismarizqii.cocktail.utils.extensions.enable
+import com.kharismarizqii.cocktail.utils.extensions.spaceFormat
+import com.kharismarizqii.cocktail.utils.extensions.underscoreFormat
 import com.kharismarizqii.core_cocktail.abstraction.BaseFragmentDialogBinding
 import javax.inject.Inject
 
@@ -38,6 +40,7 @@ class FilterDialogFragment(
 
     override fun setupView() {
         disableAllFilter()
+        setupCurrentFilter()
         viewModel.uiState.observe(viewLifecycleOwner, this)
         viewModel.getFilterAlcoholic()
         viewModel.getFilterCategory()
@@ -46,9 +49,17 @@ class FilterDialogFragment(
         with(binding){
             btnClose.setOnClickListener { dismiss() }
             btnApplyFilter.setOnClickListener {
-//                onFilter.invoke(filter)
+                onFilter.invoke(filter)
                 dismiss()
             }
+        }
+    }
+
+    private fun setupCurrentFilter() {
+        with(binding){
+            filter.alcoholic?.let { filterAlcoholic.setTextFilter(it.spaceFormat()) }
+            filter.category?.let { filterCategory.setTextFilter(it.spaceFormat()) }
+            filter.glass?.let { filterGlass.setTextFilter(it.spaceFormat()) }
         }
     }
 
@@ -71,6 +82,7 @@ class FilterDialogFragment(
             titleDialog = "Alcoholic"
         ) { data, position ->
             binding.filterAlcoholic.setTextFilter(data)
+            filter.alcoholic = data.underscoreFormat()
             bottomDialogPartner.dismiss()
         }
     }
@@ -88,6 +100,7 @@ class FilterDialogFragment(
             titleDialog = "Glass"
         ) { data, position ->
             binding.filterGlass.setTextFilter(data)
+            filter.glass = data.underscoreFormat()
             bottomDialogPartner.dismiss()
         }
     }
@@ -105,6 +118,7 @@ class FilterDialogFragment(
             titleDialog = "Category"
         ) { data, position ->
             binding.filterCategory.setTextFilter(data)
+            filter.category = data.underscoreFormat()
             bottomDialogPartner.dismiss()
         }
     }

@@ -5,7 +5,7 @@ package com.kharismarizqii.cocktail.domain.model
  * github.com/kharismarizqii
  */
 data class CocktailFilter(
-    val alcoholic: String? = null,
-    val category: String? = null,
-    val glass: String? = null
+    var alcoholic: String? = null,
+    var category: String? = null,
+    var glass: String? = null
 )
