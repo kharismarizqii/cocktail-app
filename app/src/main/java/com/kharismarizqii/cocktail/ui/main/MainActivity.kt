@@ -40,7 +40,7 @@ class MainActivity : BaseActivityBinding<ActivityMainBinding>(),
     override fun setupView() {
         (application as MyApplication).appComponent.inject(this)
 
-        setupTransparentStatusBar(binding){ insets ->
+        setupTransparentStatusBar(binding) { insets ->
             binding.svCocktail.setMarginTop(insets.top + 63)
             binding.rvCocktail.updatePadding(top = insets.top + 226)
         }
@@ -58,8 +58,12 @@ class MainActivity : BaseActivityBinding<ActivityMainBinding>(),
                 FilterDialogFragment.build(filter, svCocktail.getQuery()) { pFilter, pQuery ->
                     filter = pFilter
                     query = pQuery
-                    if(pQuery.isEmpty()) {
-                        viewModel.filterCocktail(filter)
+                    if (pQuery.isEmpty()) {
+                        if (filter.alcoholic == null && filter.category == null && filter.glass == null) {
+                            viewModel.getListCocktail()
+                        } else {
+                            viewModel.filterCocktail(filter)
+                        }
                     } else {
                         viewModel.filterWithSearch(filter, pQuery)
                     }
@@ -73,11 +77,16 @@ class MainActivity : BaseActivityBinding<ActivityMainBinding>(),
             svCocktail.setOnQueryChangeListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     if (query != null) {
-                        if(filter.alcoholic==null && filter.category==null && filter.glass==null){
+                        if (filter.alcoholic == null && filter.category == null && filter.glass == null) {
                             viewModel.searchCocktail(query.toString())
                         } else {
                             val filteredList = list.filter {
                                 it.strDrink.lowercase().contains(query.toString().lowercase())
+                            }
+                            if(filteredList.isEmpty()){
+                                emptyLayout.root.visibility = View.VISIBLE
+                            } else {
+                                emptyLayout.root.visibility = View.INVISIBLE
                             }
                             adapter.submitList(filteredList)
                         }
@@ -109,7 +118,14 @@ class MainActivity : BaseActivityBinding<ActivityMainBinding>(),
         when (t) {
             is MainViewModel.MainUiState.Success -> {
                 binding.progressBar.visibility = View.INVISIBLE
-                binding.rvCocktail.visibility = View.VISIBLE
+                if(t.listCocktail.isEmpty()){
+                    binding.rvCocktail.visibility = View.INVISIBLE
+                    binding.emptyLayout.root.visibility = View.VISIBLE
+                } else {
+                    binding.rvCocktail.visibility = View.VISIBLE
+                    binding.emptyLayout.root.visibility = View.INVISIBLE
+                }
+
                 list.clear()
                 list.addAll(t.listCocktail)
                 adapter.submitList(t.listCocktail)
@@ -118,11 +134,13 @@ class MainActivity : BaseActivityBinding<ActivityMainBinding>(),
             is MainViewModel.MainUiState.Failed -> {
                 binding.progressBar.visibility = View.INVISIBLE
                 binding.rvCocktail.visibility = View.VISIBLE
+                binding.emptyLayout.root.visibility = View.INVISIBLE
                 Toast.makeText(this, t.message, Toast.LENGTH_SHORT).show()
             }
             is MainViewModel.MainUiState.Loading -> {
                 binding.progressBar.visibility = View.VISIBLE
                 binding.rvCocktail.visibility = View.INVISIBLE
+                binding.emptyLayout.root.visibility = View.INVISIBLE
             }
         }
     }

@@ -18,6 +18,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="24dp"
             android:src="@drawable/ic_filter"
+            android:contentDescription="@string/filter"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="Filter"
+            android:text="@string/filter"
             android:textSize="18sp"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
@@ -39,6 +40,7 @@
             android:layout_height="18dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="32dp"
+            android:contentDescription="@string/back_button"
             android:background="@android:color/transparent"
             android:src="@drawable/ic_close"
             app:layout_constraintEnd_toEndOf="parent"
@@ -80,27 +82,36 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"
-            app:textFilter="Glass"
             app:backgroundFilter="@drawable/bg_filter_dropdown"
-            app:layout_constraintBottom_toTopOf="@+id/btnApplyFilter"
+            app:layout_constraintBottom_toTopOf="@+id/tv_clear_filter"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/filter_category"/>
+            app:layout_constraintTop_toBottomOf="@id/filter_category"
+            app:textFilter="Glass" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_clear_filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/clear_filter"
+            app:layout_constraintEnd_toEndOf="@+id/filter_glass"
+            app:layout_constraintTop_toBottomOf="@+id/filter_glass"
+            app:layout_constraintBottom_toTopOf="@+id/btnApplyFilter" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnApplyFilter"
             android:layout_width="wrap_content"
             android:layout_height="56dp"
-            android:layout_marginTop="16dp"
             android:layout_marginBottom="24dp"
             android:inputType="text"
             android:paddingHorizontal="32dp"
-            android:text="Terapkan Filter"
+            android:text="@string/apply_filter"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/filter_glass"
             app:layout_constraintStart_toStartOf="@+id/filter_glass"
-            app:layout_constraintTop_toBottomOf="@+id/filter_glass" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_clear_filter" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

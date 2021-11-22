@@ -4,4 +4,8 @@
     <string name="back_button">back_button</string>
     <string name="ingredients">Ingredients</string>
     <string name="measure">Measure</string>
+    <string name="apply_filter">Terapkan Filter</string>
+    <string name="filter">Filter</string>
+    <string name="clear_filter">Clear Filter</string>
+    <string name="data_not_found">Data not found</string>
 </resources>

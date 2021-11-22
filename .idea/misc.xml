@@ -17,6 +17,7 @@
         <entry key="app/src/main/res/layout/card_cocktail_description.xml" value="0.25" />
         <entry key="app/src/main/res/layout/card_cocktail_ingredients.xml" value="0.25" />
         <entry key="app/src/main/res/layout/dialog_filter.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/empty_data.xml" value="0.22" />
         <entry key="app/src/main/res/layout/item_cocktail.xml" value="0.33" />
         <entry key="app/src/main/res/layout/item_filter_bottom_dialog.xml" value="0.33" />
         <entry key="widget/src/main/res/drawable/bg_filter_dropdown.xml" value="0.1765625" />

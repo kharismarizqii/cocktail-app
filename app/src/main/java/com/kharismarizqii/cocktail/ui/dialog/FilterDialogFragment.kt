@@ -53,6 +53,10 @@ class FilterDialogFragment(
                 onFilter.invoke(filter, query)
                 dismiss()
             }
+            tvClearFilter.setOnClickListener {
+                onFilter.invoke(CocktailFilter(), "")
+                dismiss()
+            }
         }
     }
 
