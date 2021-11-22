@@ -22,9 +22,11 @@ class DetailCocktailViewModel @Inject constructor(
     sealed class DetailCocktailUiState{
         data class Success(val data: DetailCocktail): DetailCocktailUiState()
         data class Failed(val message: String): DetailCocktailUiState()
+        object Loading: DetailCocktailUiState()
     }
 
     fun getDetailCocktail(id: String){
+        _uiState.value = DetailCocktailUiState.Loading
         viewModelScope.launch(dispatchers.io) {
             val response = cocktailUseCase.getDetailCocktail(id)
             when(response){

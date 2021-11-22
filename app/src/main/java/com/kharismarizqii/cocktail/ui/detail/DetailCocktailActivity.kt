@@ -1,6 +1,7 @@
 package com.kharismarizqii.cocktail.ui.detail
 
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
@@ -45,11 +46,30 @@ class DetailCocktailActivity : BaseActivityBinding<ActivityDetailCocktailBinding
     override fun onChanged(t: DetailCocktailViewModel.DetailCocktailUiState?) {
         when (t) {
             is DetailCocktailViewModel.DetailCocktailUiState.Success -> {
+                binding.progressBar.visibility = View.INVISIBLE
+                hideAllComponent(false)
                 setupViewWithData(t.data)
             }
             is DetailCocktailViewModel.DetailCocktailUiState.Failed -> {
+                binding.progressBar.visibility = View.INVISIBLE
+                hideAllComponent(false)
                 Toast.makeText(this, t.message, Toast.LENGTH_SHORT).show()
             }
+            is DetailCocktailViewModel.DetailCocktailUiState.Loading -> {
+                hideAllComponent(true)
+                binding.progressBar.visibility = View.VISIBLE
+            }
+        }
+    }
+
+    private fun hideAllComponent(isHidden: Boolean) {
+        val visibility = if (isHidden) View.INVISIBLE else View.VISIBLE
+        with(binding) {
+            btnBack.visibility = visibility
+            ivBanner.visibility = visibility
+            gradientBanner.visibility = visibility
+            cvCocktailDesc.root.visibility = visibility
+            cvIngredient.root.visibility = visibility
         }
     }
 
@@ -63,14 +83,14 @@ class DetailCocktailActivity : BaseActivityBinding<ActivityDetailCocktailBinding
                 tvGlass.text = data.strGlass
                 tvInstructCocktail.text = data.strInstructions
             }
-            with(cvIngredient){
+            with(cvIngredient) {
                 val textIngredients = StringBuilder()
-                for(ingredient in data.listIngredients) {
-                    textIngredients.appendLine(ingredient)
+                for (ingredient in data.listIngredients) {
+                    if (ingredient.isNotEmpty()) textIngredients.appendLine(ingredient)
                 }
                 val textMeasure = StringBuilder()
-                for(measure in data.listMeasure){
-                    textMeasure.appendLine(measure)
+                for (measure in data.listMeasure) {
+                    if (measure.isNotEmpty()) textMeasure.appendLine(measure)
                 }
                 tvIngredient.text = textIngredients
                 tvMeasure.text = textMeasure

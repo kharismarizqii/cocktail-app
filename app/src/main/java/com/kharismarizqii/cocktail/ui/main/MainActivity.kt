@@ -2,6 +2,7 @@ package com.kharismarizqii.cocktail.ui.main
 
 import android.content.Intent
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.*
@@ -107,12 +108,21 @@ class MainActivity : BaseActivityBinding<ActivityMainBinding>(),
     override fun onChanged(t: MainViewModel.MainUiState?) {
         when (t) {
             is MainViewModel.MainUiState.Success -> {
+                binding.progressBar.visibility = View.INVISIBLE
+                binding.rvCocktail.visibility = View.VISIBLE
                 list.clear()
                 list.addAll(t.listCocktail)
                 adapter.submitList(t.listCocktail)
+                binding.rvCocktail.scrollToPosition(0)
             }
             is MainViewModel.MainUiState.Failed -> {
+                binding.progressBar.visibility = View.INVISIBLE
+                binding.rvCocktail.visibility = View.VISIBLE
                 Toast.makeText(this, t.message, Toast.LENGTH_SHORT).show()
+            }
+            is MainViewModel.MainUiState.Loading -> {
+                binding.progressBar.visibility = View.VISIBLE
+                binding.rvCocktail.visibility = View.INVISIBLE
             }
         }
     }
