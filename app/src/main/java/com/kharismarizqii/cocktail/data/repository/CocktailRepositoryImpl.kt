@@ -1,10 +1,7 @@
 package com.kharismarizqii.cocktail.data.repository
 
 import com.kharismarizqii.cocktail.data.remote.RemoteDataSource
-import com.kharismarizqii.cocktail.data.remote.mapper.CocktailMapper
-import com.kharismarizqii.cocktail.data.remote.mapper.FilterAlcoholicMapper
-import com.kharismarizqii.cocktail.data.remote.mapper.FilterCategoryMapper
-import com.kharismarizqii.cocktail.data.remote.mapper.FilterGlassMapper
+import com.kharismarizqii.cocktail.data.remote.mapper.*
 import com.kharismarizqii.cocktail.domain.model.Cocktail
 import com.kharismarizqii.cocktail.domain.model.DetailCocktail
 import com.kharismarizqii.cocktail.domain.model.FilterQuery
@@ -22,6 +19,7 @@ class CocktailRepositoryImpl @Inject constructor(
     private val filterAlcoholicMapper: FilterAlcoholicMapper,
     private val filterCategoryMapper: FilterCategoryMapper,
     private val filterGlassMapper: FilterGlassMapper,
+    private val detailCocktailMapper: DetailCocktailMapper,
 ): CocktailRepository {
     override suspend fun getListCokctail(): Either<Throwable, List<Cocktail>> {
         val response = remoteDataSource.getListCocktail()
@@ -60,7 +58,15 @@ class CocktailRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getDetailCocktail(id: String): Either<Throwable, DetailCocktail> {
-        TODO("Not yet implemented")
+        val response = remoteDataSource.getDetailCocktail(id)
+        return when(response) {
+            is Either.Success -> {
+                Either.Success(detailCocktailMapper.mapToDomain(response.body), response.code, response.message)
+            }
+            is Either.Failed -> {
+                Either.Failed(response.failure)
+            }
+        }
     }
 
     override suspend fun getFilterAlcoholic(): Either<Throwable, List<FilterQuery>> {

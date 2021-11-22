@@ -9,38 +9,38 @@ data class DetailCocktailResponse(
 ) {
     data class Drink(
         @SerializedName("idDrink")
-        var idDrink: String = "",
+        var idDrink: String? = "",
         @SerializedName("strDrink")
-        var strDrink: String = "",
+        var strDrink: String? = "",
         @SerializedName("strCategory")
-        var strCategory: String = "",
+        var strCategory: String? = "",
         @SerializedName("strAlcoholic")
-        var strAlcoholic: String = "",
+        var strAlcoholic: String? = "",
         @SerializedName("strGlass")
-        var strGlass: String = "",
+        var strGlass: String? = "",
         @SerializedName("strInstructions")
-        var strInstructions: String = "",
+        var strInstructions: String? = "",
         @SerializedName("strDrinkThumb")
-        var strDrinkThumb: String = "",
+        var strDrinkThumb: String? = "",
         @SerializedName("strIngredient1")
-        var strIngredient1: String = "",
+        var strIngredient1: String? = "",
         @SerializedName("strIngredient2")
-        var strIngredient2: String = "",
+        var strIngredient2: String? = "",
         @SerializedName("strIngredient3")
-        var strIngredient3: String = "",
+        var strIngredient3: String? = "",
         @SerializedName("strIngredient4")
-        var strIngredient4: String = "",
+        var strIngredient4: String? = "",
         @SerializedName("strMeasure1")
-        var strMeasure1: String = "",
+        var strMeasure1: String? = "",
         @SerializedName("strMeasure2")
-        var strMeasure2: String = "",
+        var strMeasure2: String? = "",
         @SerializedName("strMeasure3")
-        var strMeasure3: String = "",
+        var strMeasure3: String? = "",
         @SerializedName("strMeasure4")
-        var strMeasure4: String = "",
+        var strMeasure4: String? = "",
         @SerializedName("strCreativeCommonsConfirmed")
-        var strCreativeCommonsConfirmed: String = "",
+        var strCreativeCommonsConfirmed: String? = "",
         @SerializedName("dateModified")
-        var dateModified: String = ""
+        var dateModified: String? = ""
     )
 }

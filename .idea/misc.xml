@@ -4,10 +4,18 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../../layout/custom_preview.xml" value="0.20572916666666666" />
+        <entry key="app/src/main/res/drawable/bg_black_rounded.xml" value="0.1859375" />
+        <entry key="app/src/main/res/drawable/bg_red_rounded.xml" value="0.1859375" />
         <entry key="app/src/main/res/drawable/bg_white_rounded.xml" value="0.15572916666666667" />
+        <entry key="app/src/main/res/drawable/bg_yellow_rounded.xml" value="0.1859375" />
         <entry key="app/src/main/res/drawable/gradient.xml" value="0.759375" />
+        <entry key="app/src/main/res/drawable/gradient_top_to_down.xml" value="0.17083333333333334" />
+        <entry key="app/src/main/res/drawable/ic_chevron_left.xml" value="0.17083333333333334" />
+        <entry key="app/src/main/res/layout/activity_detail_cocktail.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/bottom_filter_list.xml" value="0.21" />
+        <entry key="app/src/main/res/layout/card_cocktail_description.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/card_cocktail_ingredients.xml" value="0.25" />
         <entry key="app/src/main/res/layout/dialog_filter.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_cocktail.xml" value="0.33" />
         <entry key="app/src/main/res/layout/item_filter_bottom_dialog.xml" value="0.33" />

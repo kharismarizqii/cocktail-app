@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    style="@style/Theme.Cocktail.Container.Card"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintWidth_default="wrap"
+        android:paddingBottom="24dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_title_cocktail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            style="@style/Theme.Cocktail.Text.Title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Cocktail" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_instruct_cocktail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_title_cocktail"
+            app:layout_constraintStart_toStartOf="@+id/tv_title_cocktail"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title_cocktail"
+            tools:text="Lorem ipsum dolor sit amet" />
+
+        <HorizontalScrollView
+            android:id="@+id/scroll_chip"
+            android:layout_width="0dp"
+            android:layout_marginTop="8dp"
+            android:scrollbars="none"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_instruct_cocktail">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingStart="16dp"
+                android:orientation="horizontal"
+                tools:ignore="RtlSymmetry">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_category"
+                    style="@style/Theme.Cocktail.Text.ChipCategory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Milk and Shake" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_glass"
+                    style="@style/Theme.Cocktail.Text.ChipGlass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    tools:text="Glass" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_alcoholic"
+                    style="@style/Theme.Cocktail.Text.ChipAlcoholic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    tools:text="Alcoholic" />
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

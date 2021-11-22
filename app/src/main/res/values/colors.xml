@@ -8,4 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="white_ghost">#F8F8FF</color>
+    <color name="fire">#FDA50F</color>
+    <color name="eerie_black">#1B2021</color>
+    <color name="dark_red">#941B0C</color>
 </resources>

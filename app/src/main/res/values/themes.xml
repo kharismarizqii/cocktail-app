@@ -16,8 +16,44 @@
 
     <style name="Theme.Cocktail.Text" />
 
+    <style name="Theme.Cocktail.Text.Title">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Theme.Cocktail.Text.Title2">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="Theme.Cocktail.Text.CardTitle">
         <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Theme.Cocktail.Text.ChipCategory">
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:background">@drawable/bg_yellow_rounded</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Theme.Cocktail.Text.ChipGlass">
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:background">@drawable/bg_red_rounded</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Theme.Cocktail.Text.ChipAlcoholic">
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:background">@drawable/bg_black_rounded</item>
         <item name="android:textColor">@color/white</item>
     </style>
 
@@ -35,6 +71,7 @@
 
     <style name="Theme.Cocktail.Container.Card">
         <item name="cardElevation">8dp</item>
+        <item name="cardCornerRadius">8dp</item>
         <item name="android:layout_margin">8dp</item>
     </style>
 

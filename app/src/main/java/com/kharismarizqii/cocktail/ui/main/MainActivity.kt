@@ -1,5 +1,6 @@
 package com.kharismarizqii.cocktail.ui.main
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
@@ -10,8 +11,10 @@ import com.kharismarizqii.cocktail.MyApplication
 import com.kharismarizqii.cocktail.databinding.ActivityMainBinding
 import com.kharismarizqii.cocktail.domain.model.Cocktail
 import com.kharismarizqii.cocktail.domain.model.CocktailFilter
+import com.kharismarizqii.cocktail.ui.detail.DetailCocktailActivity
 import com.kharismarizqii.cocktail.ui.dialog.FilterDialogFragment
 import com.kharismarizqii.cocktail.utils.extensions.setMarginTop
+import com.kharismarizqii.cocktail.utils.extensions.setupTransparentStatusBar
 import com.kharismarizqii.core_cocktail.abstraction.BaseActivityBinding
 import javax.inject.Inject
 
@@ -34,26 +37,18 @@ class MainActivity : BaseActivityBinding<ActivityMainBinding>(),
 
 
     override fun setupView() {
-        setupTransparentStatusBar()
         (application as MyApplication).appComponent.inject(this)
+
+        setupTransparentStatusBar(binding){ insets ->
+            binding.svCocktail.setMarginTop(insets.top + 63)
+            binding.rvCocktail.updatePadding(top = insets.top + 226)
+        }
+
         viewModel.uiState.observe(this, this)
         setupCocktailList()
         setupSearchAction()
         setupFilterAction()
         viewModel.getListCocktail()
-    }
-
-    private fun setupTransparentStatusBar() {
-        WindowCompat.setDecorFitsSystemWindows(window, false)
-        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, windowInsets ->
-            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.statusBars())
-
-            binding.svCocktail.setMarginTop(insets.top + 63)
-            binding.rvCocktail.updatePadding(top = insets.top + 226)
-
-            WindowInsetsCompat.CONSUMED
-        }
-
     }
 
     private fun setupFilterAction() {
@@ -101,6 +96,11 @@ class MainActivity : BaseActivityBinding<ActivityMainBinding>(),
             rvCocktail.setHasFixedSize(true)
             rvCocktail.layoutManager = GridLayoutManager(this@MainActivity, 2)
             rvCocktail.adapter = adapter
+            adapter.setOnClickData {
+                val intent = Intent(this@MainActivity, DetailCocktailActivity::class.java)
+                intent.putExtra(DetailCocktailActivity.EXTRA_ID, it.idDrink)
+                startActivity(intent)
+            }
         }
     }
 

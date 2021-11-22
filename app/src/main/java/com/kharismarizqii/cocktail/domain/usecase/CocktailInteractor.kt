@@ -2,6 +2,7 @@ package com.kharismarizqii.cocktail.domain.usecase
 
 import com.kharismarizqii.cocktail.domain.model.Cocktail
 import com.kharismarizqii.cocktail.domain.model.CocktailFilter
+import com.kharismarizqii.cocktail.domain.model.DetailCocktail
 import com.kharismarizqii.cocktail.domain.model.FilterQuery
 import com.kharismarizqii.cocktail.domain.repository.CocktailRepository
 import com.kharismarizqii.core_cocktail.vo.Either
@@ -40,5 +41,9 @@ class CocktailInteractor(
 
     override suspend fun getFilterCategory(): Either<Throwable, List<FilterQuery>> {
         return repository.getFilterCategory()
+    }
+
+    override suspend fun getDetailCocktail(id: String): Either<Throwable, DetailCocktail> {
+        return repository.getDetailCocktail(id)
     }
 }

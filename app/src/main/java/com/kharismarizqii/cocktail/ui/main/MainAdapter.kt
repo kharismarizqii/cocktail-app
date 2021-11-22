@@ -16,18 +16,23 @@ class MainAdapter : BaseRecyclerViewAdapter<MainAdapter.MainViewHolder>() {
 
     private val listData: MutableList<Cocktail> = ArrayList()
 
-    fun submitList(newList:List<Cocktail>){
+    lateinit var onClick: (data: Cocktail) -> Unit
+
+    fun submitList(newList: List<Cocktail>) {
         listData.clear()
         listData.addAll(newList)
         notifyDataSetChanged()
     }
 
-    class MainViewHolder(itemView: ItemCocktailBinding) :
+    inner class MainViewHolder(itemView: ItemCocktailBinding) :
         BaseViewHolder<Cocktail, ItemCocktailBinding>(itemView) {
         override fun bind(data: Cocktail) {
-            with(itemView){
+            with(binding){
                 Glide.with(itemView.context).load(data.strDrinkThumb).into(binding.ivCocktail)
                 binding.tvTitle.text = data.strDrink
+                root.setOnClickListener {
+                    onClick.invoke(data)
+                }
             }
         }
     }
@@ -43,5 +48,9 @@ class MainAdapter : BaseRecyclerViewAdapter<MainAdapter.MainViewHolder>() {
 
     override fun getItemCount(): Int {
         return listData.size
+    }
+
+    fun setOnClickData(onClick: (data: Cocktail) -> Unit) {
+        this.onClick = onClick
     }
 }

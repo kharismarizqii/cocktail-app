@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Cocktail</string>
     <string name="search_cocktail">Cari Cocktail</string>
+    <string name="back_button">back_button</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="measure">Measure</string>
 </resources>

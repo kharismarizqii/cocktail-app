@@ -1,9 +1,6 @@
 package com.kharismarizqii.cocktail.di
 
-import com.kharismarizqii.cocktail.data.remote.mapper.CocktailMapper
-import com.kharismarizqii.cocktail.data.remote.mapper.FilterAlcoholicMapper
-import com.kharismarizqii.cocktail.data.remote.mapper.FilterCategoryMapper
-import com.kharismarizqii.cocktail.data.remote.mapper.FilterGlassMapper
+import com.kharismarizqii.cocktail.data.remote.mapper.*
 import dagger.Module
 import dagger.Provides
 
@@ -25,4 +22,7 @@ class MapperModule {
 
     @Provides
     fun provideFilterGlassMapper() = FilterGlassMapper()
+
+    @Provides
+    fun provideDetailCocktalMapper() = DetailCocktailMapper()
 }

@@ -2,6 +2,7 @@ package com.kharismarizqii.cocktail.domain.usecase
 
 import com.kharismarizqii.cocktail.domain.model.Cocktail
 import com.kharismarizqii.cocktail.domain.model.CocktailFilter
+import com.kharismarizqii.cocktail.domain.model.DetailCocktail
 import com.kharismarizqii.cocktail.domain.model.FilterQuery
 import com.kharismarizqii.core_cocktail.vo.Either
 
@@ -16,4 +17,5 @@ interface CocktailUseCase {
     suspend fun getFilterAlcoholic(): Either<Throwable, List<FilterQuery>>
     suspend fun getFilterGlass(): Either<Throwable, List<FilterQuery>>
     suspend fun getFilterCategory(): Either<Throwable, List<FilterQuery>>
+    suspend fun getDetailCocktail(id: String): Either<Throwable, DetailCocktail>
 }
