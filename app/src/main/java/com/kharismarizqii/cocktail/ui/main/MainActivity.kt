@@ -59,10 +59,13 @@ class MainActivity : BaseActivityBinding<ActivityMainBinding>(),
                     filter = pFilter
                     query = pQuery
                     if (pQuery.isEmpty()) {
+                        svCocktail.setQuery("")
                         if (filter.alcoholic == null && filter.category == null && filter.glass == null) {
                             viewModel.getListCocktail()
+                            filterIndicator.visibility = View.GONE
                         } else {
                             viewModel.filterCocktail(filter)
+                            filterIndicator.visibility = View.VISIBLE
                         }
                     } else {
                         viewModel.filterWithSearch(filter, pQuery)
