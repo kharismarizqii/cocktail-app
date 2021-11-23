@@ -1,8 +1,8 @@
-# Mini Stockbit
+# Cocktail App
 This project is a mini-copy of [TheCocktailDB](https://www.thecocktaildb.com/api.php). Main features of this application are List Cocktail, Detail Cocktail and Filter.
 
 <p align="center">
-  <a href="https://drive.google.com/file/d/1Yo05E796uPyj9XzZ_0tSwNsaUyvET1bz/view?usp=sharing"><img src="https://img.shields.io/badge/DOWNLOAD%20APK-v1.0-brightgreen" alt="Cocktail-App"/></a> 
+  <a href="https://drive.google.com/drive/folders/1QNM-PExi_p3afHzwFWkOSShPzD-sRIRK?usp=sharing"><img src="https://img.shields.io/badge/DOWNLOAD%20APK-v1.0-brightgreen" alt="Cocktail-App"/></a> 
   <br/>
   <br/>
   <a href="https://kotlinlang.org/"><img src="https://img.shields.io/badge/kotlin-v1.5.10-blue" alt="kotlin"/></a>
@@ -38,6 +38,6 @@ This project is a mini-copy of [TheCocktailDB](https://www.thecocktaildb.com/api
 
 ### Unit Testing
 
-<img src="https://github.com/TimurHaryo/MiniStockbit/blob/master/screenshot/unit_testing.png" />
+<img src="https://github.com/kharismarizqii/cocktail-app/blob/master/screenshot/unit_test.png" />
 
 
