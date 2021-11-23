@@ -2,7 +2,7 @@ package com.kharismarizqii.cocktail.extension
 
 import com.kharismarizqii.cocktail.utils.extensions.spaceFormat
 import com.kharismarizqii.cocktail.utils.extensions.underscoreFormat
-import junit.framework.Assert.assertEquals
+import org.junit.Assert.*
 import org.junit.Test
 
 /**
