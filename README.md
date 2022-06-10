@@ -27,17 +27,45 @@ This project is a mini-copy of [TheCocktailDB](https://www.thecocktaildb.com/api
 - Filter Dialog
 
 ### Tech Stack
-- Modularization of Android Application
-- MVVM and Clean Architecture
-- Either class for handling state
-- View Binding
-- Material Design
-- Dagger2
-- Coroutine and Live Data
-- MockK and JUnit for Unit Testing
+- [Kotlin](https://kotlinlang.org/) based, [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) for asynchronous.
+- [Dagger2](https://github.com/google/dagger) - for dependency injection.
+- [Retrofit2 & OkHttp3](https://github.com/square/retrofit) - Construct the REST APIs.
+- Jetpack
+  - ViewModel - Manages UI-related data holder and lifecycle aware. Allows data to survive configuration changes such as screen rotations.
+  - ViewBinding - Generates a binding class for each XML layout file that allows you to more easily write code that interacts with views.
+  - LiveData - A lifecycle-aware observable data holder class.
+- [MockK](https://github.com/mockk/mockk) and JUnit - for unit testing.
+- [timberkt](https://github.com/ajalt/timberkt) - An easy Android logging with Kotlin and Timber.
+- [Glide](https://github.com/bumptech/glide) - Loading images from network.
 
-### Unit Testing
+## Architecture
+Currency Converter is based on the MVVM architecture and the Repository pattern.
 
-<img src="https://github.com/kharismarizqii/cocktail-app/blob/master/screenshot/unit_test.png" />
+![architecture](https://user-images.githubusercontent.com/24237865/77502018-f7d36000-6e9c-11ea-92b0-1097240c8689.png)
+
+# License
+```xml
+The MIT License (MIT)
+
+Copyright (c) 2017 skydoves
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+```
 
 
